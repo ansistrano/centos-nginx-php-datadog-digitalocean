@@ -1,8 +1,7 @@
 ---
 galaxy_info:
-  author: Carlos Buenosvinos
+  author: ansistrano
   description: Role for a stateless NGINX and PHP application running CentOS 7 on DigitalOcean with Let's Encrypt support
-  company: Ansistrano
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
@@ -39,6 +38,10 @@ galaxy_info:
   #   - 1.0
   #   - 7
   #   - 99.99
+  platforms:
+    - name: CentOS
+      versions:
+        - 7
 
   galaxy_tags: []
     # List tags for your role here, one per line. A tag is a keyword that describes
