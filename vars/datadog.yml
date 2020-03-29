@@ -1,0 +1,44 @@
+datadog_api_key: "{{rigor_datadog_api_key}}"
+datadog_agent_version: "6.0.0-1"
+datadog_config:
+  tags: "availability-zone:{{rigor_datadog_availability_zone}}"
+  logs_enabled: true
+datadog_checks:
+  http_check:
+    init_config:
+    instances:
+    - name: "{{rigor_domain_name}}"
+      url: https://"{{rigor_domain_name}}"
+      disable_ssl_validation: false
+      timeout: 1
+  php_fpm:
+    init_config:
+    instances:
+    - status_url: http://127.0.0.1/status
+      ping_url: http://127.0.0.1/ping
+      use_fastcgi: yes
+  nginx:
+    init_config:
+    instances:
+    - nginx_status_url: "http://127.0.0.1/nginx_status/"
+    logs:
+    - type: file
+      path: /var/log/nginx/error.log
+      service: nginx
+      source: nginx
+      sourcecategory: http_web_access
+    - type: file
+      path: /var/log/nginx/app_error.log
+      service: app
+      source: nginx
+      sourcecategory: http_web_access
+    - type: file
+      path: /var/log/nginx/access.log
+      service: nginx
+      source: nginx
+      sourcecategory: http_web_access
+    - type: file
+      path: /var/log/nginx/app_access.log
+      service: app
+      source: nginx
+      sourcecategory: http_web_access

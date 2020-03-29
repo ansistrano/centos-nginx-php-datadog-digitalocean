@@ -1,0 +1,47 @@
+- name: SSL | Enable certbot is installed
+  yum:
+    name: python2-certbot-nginx
+    state: latest
+  tags:
+  - ssl
+- name: SSL | Enable certbot-dns-digitalocean is installed
+  yum:
+    name: certbot-dns-digitalocean
+    state: latest
+  tags:
+  - ssl
+- name: SSL | Upload Digital Ocean API credentials
+  template:
+    src: files/etc/letsencrypt/digital-ocean.ini.j2
+    dest: /etc/letsencrypt/digital-ocean.ini
+    owner: root
+    group: root
+    mode: 0400
+  tags:
+  - ssl
+- name: SSL | Generate dhparams certificate
+  openssl_dhparam:
+    path: /etc/letsencrypt/dhparams.pem
+    size: 2048
+  tags:
+  - ssl
+- name: SSL | Check if certificate folder exists
+  stat:
+    path: "/etc/letsencrypt/live/{{ rigor_domain_name }}"
+  register: f
+  tags:
+  - ssl
+- name: SSL | Generate Certificates for Domain
+  shell: "certbot certonly -n --agree-tos --register-unsafely-without-email --dns-digitalocean --dns-digitalocean-credentials /etc/letsencrypt/digital-ocean.ini --dns-digitalocean-propagation-seconds 20 -d {{ rigor_domain_name }}"
+  when: f.stat.exists == False
+  tags:
+  - ssl
+- name: SSL | Ensure SSL certificate is up to date
+  cron:
+    name: "Renew SSL Certificate"
+    minute: "0"
+    hour: "11,22"
+    job: certbot renew --post-hook "service nginx reload"
+  tags:
+  - ssl
+  - cron

@@ -1,0 +1,22 @@
+- name: DIGITALOCEAN | Ensure digital ocean repo is available
+  copy:
+    src: files/etc/yum.repos.d/digitalocean-agent.repo
+    dest: /etc/yum.repos.d/digitalocean-agent.repo
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - digitalocean
+- name: DIGITALOCEAN | Import the DigitalOcean key
+  rpm_key:
+    state: present
+    key: https://repos.insights.digitalocean.com/sonar-agent.asc
+  tags:
+    - digitalocean
+- name: DIGITALOCEAN | Install the metrics agent
+  yum:
+    name:
+      - do-agent
+    state: latest
+  tags:
+    - digitalocean

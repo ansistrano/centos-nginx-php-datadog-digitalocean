@@ -1,0 +1,2 @@
+- import_tasks: php-handlers.yml
+- import_tasks: nginx-handlers.yml

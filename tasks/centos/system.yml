@@ -1,0 +1,8 @@
+- name: SYSTEM | Ensure all packages are in the latest version
+  yum:
+    name: '*'
+    state: latest
+- name: SYSTEM | Ensure yum-utils is installed
+  yum:
+    name: yum-utils
+    state: latest

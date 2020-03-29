@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: geerlingguy.repo-remi
+  - role: geerlingguy.repo-epel
+  - role: Datadog.datadog

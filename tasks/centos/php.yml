@@ -1,0 +1,36 @@
+- name: Install PHP and Extensions
+  yum:
+    enablerepo: "epel,remi-php74"
+    name:
+      - php
+      - php-fpm
+      - php-mbstring
+      - php-mysqlnd
+      - php-opcache
+      - php-pdo
+      - php-xml
+      - php-zip
+      - php-intl
+      - unzip
+    state: latest
+  notify:
+    - php-fpm.restart
+  tags:
+    - php
+- name: Ensure php-fpm is configured
+  copy:
+    src: files/etc/php-fpm.d/www.conf
+    dest: /etc/php-fpm.d/www.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - php-fpm.restart
+  tags:
+    - php
+- name: PHP | Ensure service php-fpm is enabled
+  service:
+    name: php-fpm
+    enabled: yes
+  tags:
+    - php

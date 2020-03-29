@@ -1,0 +1,7 @@
+[sonar]
+name=do agent
+baseurl=https://repos.insights.digitalocean.com/yum/do-agent/$basearch
+failovermethod=priority
+enabled=1
+gpgcheck=1
+gpgkey=https://repos.insights.digitalocean.com/sonar-agent.asc

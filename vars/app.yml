@@ -1,0 +1,9 @@
+rigor_app_path: "/var/www/app/current/public"
+rigor_domain_name: "your-domain.com"
+rigor_digital_ocean_api_token: "your-digital-ocean-token"
+rigor_datadog_api_key: "your-datadog-api-key"
+rigor_datadog_availability_zone: "FRA1"
+rigor_user_list:
+  - user1
+  - user2
+  - user3

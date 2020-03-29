@@ -1,0 +1,8 @@
+- name: USERS | Ensure team has root access with GitHub keys
+  authorized_key:
+    user: "root"
+    key: "https://github.com/{{ item }}.keys"
+    state: present
+  with_items: "{{ rigor_user_list }}"
+  tags:
+    - users
