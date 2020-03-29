@@ -1,3 +1,4 @@
+---
 - name: Run in case of CentOS
   import_tasks: centos/main.yml
   when: ansible_distribution == 'CentOS'

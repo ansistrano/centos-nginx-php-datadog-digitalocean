@@ -1,2 +1,4 @@
+---
+# handlers file for ansistrano.mini-php-app
 - import_tasks: php-handlers.yml
 - import_tasks: nginx-handlers.yml
