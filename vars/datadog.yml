@@ -1,5 +1,5 @@
 datadog_api_key: "{{rigor_datadog_api_key}}"
-datadog_agent_version: "6.0.0-1"
+datadog_agent_major_version: "7"
 datadog_config:
   tags: "availability-zone:{{rigor_datadog_availability_zone}}"
   logs_enabled: true
