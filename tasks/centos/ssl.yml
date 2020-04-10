@@ -32,7 +32,7 @@
   tags:
   - ssl
 - name: SSL | Generate Certificates for Domain
-  shell: "certbot certonly -n --agree-tos --register-unsafely-without-email --dns-digitalocean --dns-digitalocean-credentials /etc/letsencrypt/digital-ocean.ini -d {{ rigor_domain_name }}"
+  shell: "certbot certonly -n --agree-tos --register-unsafely-without-email --dns-digitalocean --dns-digitalocean-credentials /etc/letsencrypt/digital-ocean.ini --dns-digitalocean-propagation-seconds 20 -d {{ rigor_domain_name }}"
   when: f.stat.exists == False
   tags:
   - ssl
