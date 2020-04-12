@@ -2,7 +2,20 @@
   yum:
     name: '*'
     state: latest
+  tags:
+    - system
 - name: SYSTEM | Ensure yum-utils is installed
   yum:
     name: yum-utils
     state: latest
+  tags:
+    - system
+- name: SYSTEM | Ensure a locale exists
+  copy:
+    src: files/etc/environment
+    dest: /etc/environment
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - system
