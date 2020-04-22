@@ -6,12 +6,13 @@ rigor_digital_ocean_api_token: "your-digital-ocean-token"
 rigor_datadog_api_key: "your-datadog-api-key"
 rigor_datadog_availability_zone: "FRA1"
 rigor_user_list: []
-
 datadog_api_key: "{{rigor_datadog_api_key}}"
 datadog_agent_major_version: "7"
 datadog_config:
   tags: "availability-zone:{{rigor_datadog_availability_zone}}"
   logs_enabled: true
+  apm_config:
+    enabled: true
 datadog_checks:
   http_check:
     init_config:
